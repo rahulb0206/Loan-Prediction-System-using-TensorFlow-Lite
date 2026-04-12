@@ -1,0 +1,64 @@
+# Data — never commit raw data or large binaries
+data/raw/*.csv
+data/processed/
+
+# Model artifacts (large binaries)
+outputs/models/*.keras
+outputs/models/*.tflite
+outputs/models/*.pkl
+outputs/models/*.json
+
+# Keep figures in git (they're small and document the work)
+!outputs/figures/*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# TensorBoard logs
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Flutter build artifacts (keep source, exclude build)
+flutter/build/
+flutter/.dart_tool/
+flutter/.flutter-plugins
+flutter/.flutter-plugins-dependencies
+flutter/.packages
+flutter/pubspec.lock
+flutter/android/.gradle/
+flutter/android/local.properties
+
+# Secrets / env files
+.env*
+secrets.yaml
+credentials.json
