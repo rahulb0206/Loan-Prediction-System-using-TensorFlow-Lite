@@ -170,7 +170,12 @@ pip install -r requirements.txt
 # Run notebooks in order
 jupyter notebook notebooks/01_eda.ipynb
 
-# Or run the full pipeline directly
+# Single prediction from the command line
+python src/predict.py \
+  --age 28 --income 55000 --emp_length 3 --int_rate 11.5 --cred_hist 4 \
+  --home_ownership RENT --loan_intent PERSONAL --loan_grade B --default_on_file N
+
+# Or run the full pipeline
 python src/train.py --data data/raw/credit_risk.csv --out outputs/models
 python src/evaluate.py --models outputs/models --data data/raw/credit_risk.csv
 
@@ -191,11 +196,13 @@ Loan-Amount-Prediction-Using-TF/
 │   ├── 01_eda.ipynb            # Distributions, correlations, honest assessment of signal
 │   ├── 02_preprocessing.ipynb  # Imputation, encoding, why loan_percent_income is dropped
 │   ├── 03_modeling.ipynb       # Dummy → Linear Reg → Neural Net, training curves, TFLite
-│   └── 04_evaluation.ipynb     # RMSE/MAE/R², residuals, error analysis, limitations
+│   ├── 04_evaluation.ipynb     # RMSE/MAE/R², residuals, error analysis, limitations
+│   └── 05_predict.ipynb        # Interactive inference — edit a profile and get a prediction
 ├── src/
 │   ├── preprocess.py           # load_and_clean(), engineer_features(), get_splits()
 │   ├── train.py                # Full training pipeline — all three models
-│   └── evaluate.py             # Regression metrics, actual vs predicted, residual plots
+│   ├── evaluate.py             # Regression metrics, actual vs predicted, residual plots
+│   └── predict.py              # CLI inference for a single borrower profile
 ├── outputs/
 │   ├── figures/                # All plots (actual vs pred, residuals, feature importance)
 │   └── models/                 # best_nn.keras, scaler_X.pkl, scaler_y.pkl, LR model
@@ -205,4 +212,23 @@ Loan-Amount-Prediction-Using-TF/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
+
+---
+
+## Flutter Web App
+
+The Flutter app also runs in the browser. To build and run it locally:
+
+```bash
+cd flutter
+flutter pub get
+flutter run -d chrome
+```
+
+To build for web deployment:
+
+```bash
+flutter build web
+# Output goes to flutter/build/web/ — deploy to GitHub Pages, Netlify, or any static host
 ```
