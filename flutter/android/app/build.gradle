@@ -28,6 +28,11 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+    // Prevent the .tflite model from being compressed — required for tflite_flutter
+    aaptOptions {
+        noCompress 'tflite'
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

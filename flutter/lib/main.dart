@@ -156,6 +156,7 @@ class _LoanPredictorPageState extends State<LoanPredictorPage> {
   Future<void> _loadModel() async {
     try {
       _interpreter = await Interpreter.fromAsset('assets/model.tflite');
+      _interpreter!.allocateTensors();
     } catch (e) {
       debugPrint('Failed to load model: $e');
     }
